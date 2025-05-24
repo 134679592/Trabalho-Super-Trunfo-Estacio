@@ -1,103 +1,36 @@
 #include <stdio.h>
 
-// Função para exibir o tabuleiro com movimentos da torre
-void movimentosTorre(int linha, int coluna) {
-    int i;
-
-    printf("\nMovimentos possíveis da TORRE:\n");
-
-    // Movimento vertical (mesma coluna)
-    for (i = 1; i <= 8; i++) {
-        if (i != linha) {
-            printf("(%d, %d)\n", i, coluna);
-        }
+int main(void) {
+    // Simulação do movimento da Torre utilizando laço for.
+    // A torre se move cinco casas para a direita.
+    const int casasTorre = 5; // Número de casas que a torre se moverá
+    printf("Movimento da Torre:\n");
+    for (int i = 0; i < casasTorre; i++) {
+        // Em cada iteração, a torre avança uma casa para a direita.
+        printf("Direita\n");
     }
-
-    // Movimento horizontal (mesma linha)
-    i = 1;
-    while (i <= 8) {
-        if (i != coluna) {
-            printf("(%d, %d)\n", linha, i);
-        }
-        i++;
+    
+    // Simulação do movimento do Bispo utilizando laço while.
+    // O bispo se move cinco casas na diagonal para cima e à direita.
+    const int casasBispo = 5; // Número de casas que o bispo se moverá
+    int contadorBispo = 0;
+    printf("\nMovimento do Bispo:\n");
+    while (contadorBispo < casasBispo) {
+        // Em cada iteração, o bispo avança uma casa na diagonal (combinação de duas direções).
+        printf("Cima, Direita\n");
+        contadorBispo++;
     }
-}
-
-// Função para exibir o tabuleiro com movimentos do bispo
-void movimentosBispo(int linha, int coluna) {
-    printf("\nMovimentos possíveis do BISPO:\n");
-
-    int i = 1;
+    
+    // Simulação do movimento da Rainha utilizando laço do-while.
+    // A rainha se move oito casas para a esquerda.
+    const int casasRainha = 8; // Número de casas que a rainha se moverá
+    int contadorRainha = 0;
+    printf("\nMovimento da Rainha:\n");
     do {
-        int l1 = linha + i, c1 = coluna + i;
-        int l2 = linha - i, c2 = coluna - i;
-        int l3 = linha + i, c3 = coluna - i;
-        int l4 = linha - i, c4 = coluna + i;
-
-        if (l1 <= 8 && c1 <= 8) printf("(%d, %d)\n", l1, c1);
-        if (l2 >= 1 && c2 >= 1) printf("(%d, %d)\n", l2, c2);
-        if (l3 <= 8 && c3 >= 1) printf("(%d, %d)\n", l3, c3);
-        if (l4 >= 1 && c4 <= 8) printf("(%d, %d)\n", l4, c4);
-
-        i++;
-    } while (i < 8);
-}
-
-// Função para movimentos do cavalo
-void movimentosCavalo(int linha, int coluna) {
-    int dx[] = {2, 1, -1, -2, -2, -1, 1, 2};
-    int dy[] = {1, 2, 2, 1, -1, -2, -2, -1};
-
-    printf("\nMovimentos possíveis do CAVALO:\n");
-    for (int i = 0; i < 8; i++) {
-        int l = linha + dx[i];
-        int c = coluna + dy[i];
-        if (l >= 1 && l <= 8 && c >= 1 && c <= 8) {
-            printf("(%d, %d)\n", l, c);
-        }
-    }
-}
-
-int main() {
-    int opcao, linha, coluna;
-
-    do {
-        printf("\n--- SIMULADOR DE MOVIMENTO DE PEÇAS DE XADREZ ---\n");
-        printf("1. Torre\n");
-        printf("2. Bispo\n");
-        printf("3. Cavalo\n");
-        printf("0. Sair\n");
-        printf("Escolha a peça: ");
-        scanf("%d", &opcao);
-
-        if (opcao >= 1 && opcao <= 3) {
-            printf("Informe a posição da peça (linha e coluna de 1 a 8):\n");
-            printf("Linha: ");
-            scanf("%d", &linha);
-            printf("Coluna: ");
-            scanf("%d", &coluna);
-
-            if (linha < 1 || linha > 8 || coluna < 1 || coluna > 8) {
-                printf("Posição inválida!\n");
-                continue;
-            }
-
-            switch (opcao) {
-                case 1:
-                    movimentosTorre(linha, coluna);
-                    break;
-                case 2:
-                    movimentosBispo(linha, coluna);
-                    break;
-                case 3:
-                    movimentosCavalo(linha, coluna);
-                    break;
-            }
-        } else if (opcao != 0) {
-            printf("Opção inválida!\n");
-        }
-    } while (opcao != 0);
-
-    printf("Programa encerrado.\n");
+        // Em cada iteração, a rainha avança uma casa para a esquerda.
+        printf("Esquerda\n");
+        contadorRainha++;
+    } while (contadorRainha < casasRainha);
+    
     return 0;
 }
