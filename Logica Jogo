@@ -1,1 +1,91 @@
+#include <stdio.h>
+#include <string.h>
 
+typedef struct {
+    char nome[30];
+    int forca;
+    int velocidade;
+} Carta;
+
+void exibirCarta(Carta c) {
+    printf("\nCarta: %s\n", c.nome);
+    printf("1. Força: %d\n", c.forca);
+    printf("2. Velocidade: %d\n", c.velocidade);
+}
+
+void compararAtributo(Carta c1, Carta c2, int escolha) {
+    int valor1, valor2;
+
+    if (escolha == 1) {
+        valor1 = c1.forca;
+        valor2 = c2.forca;
+        printf("\nComparando FORÇA:\n");
+    } else {
+        valor1 = c1.velocidade;
+        valor2 = c2.velocidade;
+        printf("\nComparando VELOCIDADE:\n");
+    }
+
+    // Estrutura de decisão aninhada
+    if (valor1 > valor2) {
+        printf("A carta '%s' VENCEU!\n", c1.nome);
+    } else if (valor2 > valor1) {
+        printf("A carta '%s' VENCEU!\n", c2.nome);
+    } else {
+        printf("EMPATE!\n");
+    }
+
+    // Com operador ternário para reforço:
+    printf("Resultado via ternário: %s\n",
+        (valor1 > valor2) ? c1.nome :
+        (valor2 > valor1) ? c2.nome : "Empate");
+}
+
+int main() {
+    Carta carta1 = {"Dragão Flamejante", 90, 60};
+    Carta carta2 = {"Cavaleiro Sombrio", 80, 85};
+
+    int opcao, atributo;
+
+    do {
+        printf("\n--- SUPER TRUNFO COMPARADOR ---\n");
+        printf("1. Exibir Cartas\n");
+        printf("2. Comparar Atributo Único\n");
+        printf("3. Comparar DOIS Atributos\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                exibirCarta(carta1);
+                exibirCarta(carta2);
+                break;
+
+            case 2:
+                printf("Qual atributo comparar? (1 - Força, 2 - Velocidade): ");
+                scanf("%d", &atributo);
+                if (atributo == 1 || atributo == 2)
+                    compararAtributo(carta1, carta2, atributo);
+                else
+                    printf("Atributo inválido!\n");
+                break;
+
+            case 3:
+                printf("\n--- Comparação Múltipla ---\n");
+                compararAtributo(carta1, carta2, 1); // Força
+                compararAtributo(carta1, carta2, 2); // Velocidade
+                break;
+
+            case 0:
+                printf("Encerrando o programa...\n");
+                break;
+
+            default:
+                printf("Opção inválida!\n");
+        }
+
+    } while (opcao != 0);
+
+    return 0;
+}
