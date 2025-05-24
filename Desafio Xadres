@@ -1,0 +1,103 @@
+#include <stdio.h>
+
+// Função para exibir o tabuleiro com movimentos da torre
+void movimentosTorre(int linha, int coluna) {
+    int i;
+
+    printf("\nMovimentos possíveis da TORRE:\n");
+
+    // Movimento vertical (mesma coluna)
+    for (i = 1; i <= 8; i++) {
+        if (i != linha) {
+            printf("(%d, %d)\n", i, coluna);
+        }
+    }
+
+    // Movimento horizontal (mesma linha)
+    i = 1;
+    while (i <= 8) {
+        if (i != coluna) {
+            printf("(%d, %d)\n", linha, i);
+        }
+        i++;
+    }
+}
+
+// Função para exibir o tabuleiro com movimentos do bispo
+void movimentosBispo(int linha, int coluna) {
+    printf("\nMovimentos possíveis do BISPO:\n");
+
+    int i = 1;
+    do {
+        int l1 = linha + i, c1 = coluna + i;
+        int l2 = linha - i, c2 = coluna - i;
+        int l3 = linha + i, c3 = coluna - i;
+        int l4 = linha - i, c4 = coluna + i;
+
+        if (l1 <= 8 && c1 <= 8) printf("(%d, %d)\n", l1, c1);
+        if (l2 >= 1 && c2 >= 1) printf("(%d, %d)\n", l2, c2);
+        if (l3 <= 8 && c3 >= 1) printf("(%d, %d)\n", l3, c3);
+        if (l4 >= 1 && c4 <= 8) printf("(%d, %d)\n", l4, c4);
+
+        i++;
+    } while (i < 8);
+}
+
+// Função para movimentos do cavalo
+void movimentosCavalo(int linha, int coluna) {
+    int dx[] = {2, 1, -1, -2, -2, -1, 1, 2};
+    int dy[] = {1, 2, 2, 1, -1, -2, -2, -1};
+
+    printf("\nMovimentos possíveis do CAVALO:\n");
+    for (int i = 0; i < 8; i++) {
+        int l = linha + dx[i];
+        int c = coluna + dy[i];
+        if (l >= 1 && l <= 8 && c >= 1 && c <= 8) {
+            printf("(%d, %d)\n", l, c);
+        }
+    }
+}
+
+int main() {
+    int opcao, linha, coluna;
+
+    do {
+        printf("\n--- SIMULADOR DE MOVIMENTO DE PEÇAS DE XADREZ ---\n");
+        printf("1. Torre\n");
+        printf("2. Bispo\n");
+        printf("3. Cavalo\n");
+        printf("0. Sair\n");
+        printf("Escolha a peça: ");
+        scanf("%d", &opcao);
+
+        if (opcao >= 1 && opcao <= 3) {
+            printf("Informe a posição da peça (linha e coluna de 1 a 8):\n");
+            printf("Linha: ");
+            scanf("%d", &linha);
+            printf("Coluna: ");
+            scanf("%d", &coluna);
+
+            if (linha < 1 || linha > 8 || coluna < 1 || coluna > 8) {
+                printf("Posição inválida!\n");
+                continue;
+            }
+
+            switch (opcao) {
+                case 1:
+                    movimentosTorre(linha, coluna);
+                    break;
+                case 2:
+                    movimentosBispo(linha, coluna);
+                    break;
+                case 3:
+                    movimentosCavalo(linha, coluna);
+                    break;
+            }
+        } else if (opcao != 0) {
+            printf("Opção inválida!\n");
+        }
+    } while (opcao != 0);
+
+    printf("Programa encerrado.\n");
+    return 0;
+}
