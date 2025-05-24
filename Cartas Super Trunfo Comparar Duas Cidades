@@ -1,63 +1,88 @@
 #include <stdio.h>
-#include <string.h>
-
-// Definindo uma estrutura para armazenar dados das cidades
-struct Cidade {
-    char nome[30];
-    char estado[3];
-    float pib; // em bilhões de reais
-    int habitantes;
-    int pontosTuristicos;
-};
 
 int main() {
-    // Dados fixos de Campo Grande - MS
-    struct Cidade campoGrande;
-    strcpy(campoGrande.nome, "Campo Grande");
-    strcpy(campoGrande.estado, "MS");
-    campoGrande.pib = 26.5;
-    campoGrande.habitantes = 910000;
-    campoGrande.pontosTuristicos = 15;
+    // Declaração das variáveis para a primeira carta
+    char estado1;
+    char codigo1[4];
+    char nomeCidade1[50];
+    int populacao1;
+    float area1;
+    float pib1;
+    int pontosTuristicos1;
 
-    // Dados fixos de Cuiabá - MT
-    struct Cidade cuiaba;
-    strcpy(cuiaba.nome, "Cuiaba");
-    strcpy(cuiaba.estado, "MT");
-    cuiaba.pib = 22.7;
-    cuiaba.habitantes = 630000;
-    cuiaba.pontosTuristicos = 12;
+    // Declaração das variáveis para a segunda carta
+    char estado2;
+    char codigo2[4];
+    char nomeCidade2[50];
+    int populacao2;
+    float area2;
+    float pib2;
+    int pontosTuristicos2;
 
-    // Impressão dos dados
-    printf("Comparação entre %s-%s e %s-%s:\n\n", 
-            campoGrande.nome, campoGrande.estado, 
-            cuiaba.nome, cuiaba.estado);
+    // Entrada de dados para a primeira carta
+    printf("Cadastro da Carta 1:\n");
+    printf("Informe o Estado (A a H): ");
+    scanf(" %c", &estado1);
 
-    // Comparando o PIB
-    printf("PIB:\n");
-    printf("%s: R$ %.1f bilhões\n", campoGrande.nome, campoGrande.pib);
-    printf("%s: R$ %.1f bilhões\n", cuiaba.nome, cuiaba.pib);
-    if (campoGrande.pib > cuiaba.pib)
-        printf("Maior PIB: %s\n\n", campoGrande.nome);
-    else
-        printf("Maior PIB: %s\n\n", cuiaba.nome);
+    printf("Informe o Código da Carta (ex: A01): ");
+    scanf("%s", codigo1);
 
-    // Comparando habitantes
-    printf("Habitantes:\n");
-    printf("%s: %d habitantes\n", campoGrande.nome, campoGrande.habitantes);
-    printf("%s: %d habitantes\n", cuiaba.nome, cuiaba.habitantes);
-    if (campoGrande.habitantes > cuiaba.habitantes)
-        printf("Mais habitantes: %s\n\n", campoGrande.nome);
-    else
-        printf("Mais habitantes: %s\n\n", cuiaba.nome);
+    printf("Informe o Nome da Cidade: ");
+    scanf(" %[^\n]", nomeCidade1);
 
-    // Comparando pontos turísticos
-    printf("Pontos Turísticos:\n");
-    printf("%s: %d pontos\n", campoGrande.nome, campoGrande.pontosTuristicos);
-    printf("%s: %d pontos\n", cuiaba.nome, cuiaba.pontosTuristicos);
-    if (campoGrande.pontosTuristicos > cuiaba.pontosTuristicos)
-        printf("Mais pontos turísticos: %s\n", campoGrande.nome);
-    else
-        printf("Mais pontos turísticos: %s\n", cuiaba.nome);
+    printf("Informe a População: ");
+    scanf("%d", &populacao1);
+
+    printf("Informe a Área (em km²): ");
+    scanf("%f", &area1);
+
+    printf("Informe o PIB (em bilhões de reais): ");
+    scanf("%f", &pib1);
+
+    printf("Informe o Número de Pontos Turísticos: ");
+    scanf("%d", &pontosTuristicos1);
+
+    // Entrada de dados para a segunda carta
+    printf("\nCadastro da Carta 2:\n");
+    printf("Informe o Estado (A a H): ");
+    scanf(" %c", &estado2);
+
+    printf("Informe o Código da Carta (ex: B02): ");
+    scanf("%s", codigo2);
+
+    printf("Informe o Nome da Cidade: ");
+    scanf(" %[^\n]", nomeCidade2);
+
+    printf("Informe a População: ");
+    scanf("%d", &populacao2);
+
+    printf("Informe a Área (em km²): ");
+    scanf("%f", &area2);
+
+    printf("Informe o PIB (em bilhões de reais): ");
+    scanf("%f", &pib2);
+
+    printf("Informe o Número de Pontos Turísticos: ");
+    scanf("%d", &pontosTuristicos2);
+
+    // Exibição das informações cadastradas
+    printf("\nCarta 1:\n");
+    printf("Estado: %c\n", estado1);
+    printf("Código: %s\n", codigo1);
+    printf("Nome da Cidade: %s\n", nomeCidade1);
+    printf("População: %d\n", populacao1);
+    printf("Área: %.2f km²\n", area1);
+    printf("PIB: %.2f bilhões de reais\n", pib1);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos1);
+
+    printf("\nCarta 2:\n");
+    printf("Estado: %c\n", estado2);
+    printf("Código: %s\n", codigo2);
+    printf("Nome da Cidade: %s\n", nomeCidade2);
+    printf("População: %d\n", populacao2);
+    printf("Área: %.2f km²\n", area2);
+    printf("PIB: %.2f bilhões de reais\n", pib2);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos2);
 
     return 0;
 }
