@@ -1,1 +1,63 @@
+#include <stdio.h>
+#include <string.h>
 
+// Definindo uma estrutura para armazenar dados das cidades
+struct Cidade {
+    char nome[30];
+    char estado[3];
+    float pib; // em bilhões de reais
+    int habitantes;
+    int pontosTuristicos;
+};
+
+int main() {
+    // Dados fixos de Campo Grande - MS
+    struct Cidade campoGrande;
+    strcpy(campoGrande.nome, "Campo Grande");
+    strcpy(campoGrande.estado, "MS");
+    campoGrande.pib = 26.5;
+    campoGrande.habitantes = 910000;
+    campoGrande.pontosTuristicos = 15;
+
+    // Dados fixos de Cuiabá - MT
+    struct Cidade cuiaba;
+    strcpy(cuiaba.nome, "Cuiaba");
+    strcpy(cuiaba.estado, "MT");
+    cuiaba.pib = 22.7;
+    cuiaba.habitantes = 630000;
+    cuiaba.pontosTuristicos = 12;
+
+    // Impressão dos dados
+    printf("Comparação entre %s-%s e %s-%s:\n\n", 
+            campoGrande.nome, campoGrande.estado, 
+            cuiaba.nome, cuiaba.estado);
+
+    // Comparando o PIB
+    printf("PIB:\n");
+    printf("%s: R$ %.1f bilhões\n", campoGrande.nome, campoGrande.pib);
+    printf("%s: R$ %.1f bilhões\n", cuiaba.nome, cuiaba.pib);
+    if (campoGrande.pib > cuiaba.pib)
+        printf("Maior PIB: %s\n\n", campoGrande.nome);
+    else
+        printf("Maior PIB: %s\n\n", cuiaba.nome);
+
+    // Comparando habitantes
+    printf("Habitantes:\n");
+    printf("%s: %d habitantes\n", campoGrande.nome, campoGrande.habitantes);
+    printf("%s: %d habitantes\n", cuiaba.nome, cuiaba.habitantes);
+    if (campoGrande.habitantes > cuiaba.habitantes)
+        printf("Mais habitantes: %s\n\n", campoGrande.nome);
+    else
+        printf("Mais habitantes: %s\n\n", cuiaba.nome);
+
+    // Comparando pontos turísticos
+    printf("Pontos Turísticos:\n");
+    printf("%s: %d pontos\n", campoGrande.nome, campoGrande.pontosTuristicos);
+    printf("%s: %d pontos\n", cuiaba.nome, cuiaba.pontosTuristicos);
+    if (campoGrande.pontosTuristicos > cuiaba.pontosTuristicos)
+        printf("Mais pontos turísticos: %s\n", campoGrande.nome);
+    else
+        printf("Mais pontos turísticos: %s\n", cuiaba.nome);
+
+    return 0;
+}
